@@ -48,12 +48,9 @@ class Date:
         self.mYear = int(dateArray[0])
         self.mMonth = int(dateArray[1])
         self.mDay = int(dateArray[2])
-
-    #def __init__(self, year, month, day):
-    #    # TODO: need checking is correct format
-    #    self.mYear = year
-    #    self.mMonth = month
-    #    self.mDay = day
+        #print(self.mYear)
+        #print(self.mMonth)
+        #print(self.mDay)
 
     def GetYear(self):
         return self.mYear
@@ -102,6 +99,28 @@ class Date:
                 isBigger = True
         return isBigger
 
+    def IsSmallerThanDay_str(self, day):
+        isSmaller = False
+        dateArray = day.split('.')
+        _year = int(dateArray[0])
+        _month = int(dateArray[1])
+        _day = int(dateArray[2])
+        if self.mMonth < _month:
+            isSmaller = True
+        elif self.mMonth == _month:
+            if self.mDay < _day:
+                isSmaller = True
+        return isSmaller
+
+    def IsSmallerThanDay_Date(self, day):
+        isSmaller = False
+        if self.mMonth < day.GetMonth():
+            isSmaller = True
+        elif self.mMonth == day.GetMonth():
+            if self.mDay < day.GetDay():
+                isSmaller = True
+        return isSmaller
+
     def AssignClass_Date(self, date):
         self.mYear = date.GetYear()
         self.mMonth = date.GetMonth()
@@ -114,12 +133,48 @@ class Date:
         self.mDay = temp.GetDay()
 
 
+originDay = ["1642946701374.png", "1642946760378.png", "1642946788844.png", "1642946800414.png", "1642946823444.png", "1642946837403.png", "1642946847284.png"]
+def ModifyDatesInNoteBeginDate(date):
+    print(date.ToString())
+    _year = date.GetYear()
+    _month = date.GetMonth()
+    _day = date.mDay
+    for i in range(7):
+        print(i)
+        if exists(originDay[i]):
+            click(originDay[i])
+            print('1')
+        else:
+            type(Key.PAGE_DOWN)
+            wait(1)
+            if not exists(originDay[i]):
+                print('2')
+                print('Find image ERROR')
+                break
+            click(originDay[i])
+            print('3')
+        wait(1)
+        type(Key.HOME)
+        wait(1)
+        for j in range(5):
+            type(Key.DELETE)
+        
+        newDay = '{:02d}'.format(_month) + '/' + '{:02d}'.format(_day)
+        type(newDay)
+        print('4')
+
+        _day = _day + 1
+        if _day > monthMaxDay.GetMonthMaxDay(_month):
+            _month = _month + 1
+            _day = _day - monthMaxDay.GetMonthMaxDay(_month)
+
+
 def CreateEvernoteToDoList(beginDay, endDay):
     if IsCorrectDayFormat(beginDay) and IsCorrectDayFormat(endDay):
         _beginDay = Date(beginDay)
         _endDay = _beginDay.AddDay(6)
         
-        while _beginDay.IsBiggerThanDay_str(endDay) != True:
+        while _beginDay.IsSmallerThanDay_str(endDay):
             click("1642860440444.png")
             wait(1)
         
@@ -138,7 +193,7 @@ def CreateEvernoteToDoList(beginDay, endDay):
             click("1642861410315.png")
             wait(1)
 
-            # TODO: modify day
+            ModifyDatesInNoteBeginDate(_beginDay)
 
             _beginDay = _beginDay.AddDay(7)
             print(_beginDay.ToString())
@@ -148,7 +203,9 @@ def CreateEvernoteToDoList(beginDay, endDay):
 
 
 if __name__ == '__main__':
-    CreateEvernoteToDoList('2022.04.04', '2022.04.10')
+    CreateEvernoteToDoList('2022.04.18', '2022.04.24')
+    #_beginDay = Date('2022.04.18')
+    #ModifyDatesInNoteBeginDate(_beginDay)
     
     # testing MonthMaxDay
     #test = MonthMaxDay(False)
