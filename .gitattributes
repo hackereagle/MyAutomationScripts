@@ -1,0 +1,22 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+*.c text text eol=lf
+*.h text text eol=lf
+*.sln text eol=crlf
+Server/**/**/*.sh text eol=lf
+Server/**/*.sh text eol=lf
+Server/Commands/*.sh text eol=lf
+Build.sh
+ExecuteAlgorithm.sh
+RebuildWithDebugTpe.sh
+*.sh text eol=lf
+Makefile text eol=lf
+makefile text eol=lf
+
+# Denote all files that are truly binary and should not be modified.
+*.png binary
+*.jpg binary
+*.bmp binary
+*.so binary
+*.a binary
