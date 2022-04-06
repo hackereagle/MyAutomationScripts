@@ -145,7 +145,7 @@ def ModifyDatesInNoteBeginDate(date):
             click(originDay[i])
             print('1')
         else:
-            type(Key.PAGE_DOWN)
+            wheel("1643037253309.png", Button.WHEEL_DOWN, 5)
             wait(1)
             if not exists(originDay[i]):
                 print('2')
@@ -203,20 +203,20 @@ def CreateEvernoteToDoList(beginDay, endDay):
 
 
 if __name__ == '__main__':
-    #CreateEvernoteToDoList('2022.04.18', '2022.04.24')
+    CreateEvernoteToDoList('2022.04.18', '2022.04.24')
     
     #_beginDay = Date('2022.04.18')
     #ModifyDatesInNoteBeginDate(_beginDay)
 
     # 2022.01.24 Testing mouse wheel
-    #wheel("1643037253309.png", Button.WHEEL_DOWN, 2)
+    #wheel("1643037253309.png", Button.WHEEL_DOWN, 5)
     #wait(1)
 
     # 2022.01.24 Test find result
-    x = find("1643037435053.png")
-    print(x)
-    Offset(31, 367)
-    print(x)
+    #x = find("1643037435053.png")
+    #print(x)
+    #Offset(31, 367)
+    #print(x)
     
     # testing MonthMaxDay
     #test = MonthMaxDay(False)

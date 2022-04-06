@@ -15,6 +15,6 @@ cd cmake-3.22.1
 ./configure
 sudo make install
 
-rm -r cmake-3.22.1
+#rm -r cmake-3.22.1
 
 cmake --version
