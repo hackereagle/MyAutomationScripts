@@ -141,18 +141,9 @@ def ModifyDatesInNoteBeginDate(date):
     _day = date.mDay
     for i in range(7):
         print(i)
-        if exists(originDay[i]):
-            click(originDay[i])
-            print('1')
-        else:
-            wheel("1643037253309.png", Button.WHEEL_DOWN, 5)
-            wait(1)
-            if not exists(originDay[i]):
-                print('2')
-                print('Find image ERROR')
-                break
-            click(originDay[i])
-            print('3')
+        pos = find(originDay[i])
+        click(pos)
+        
         wait(1)
         type(Key.HOME)
         wait(1)
@@ -161,7 +152,9 @@ def ModifyDatesInNoteBeginDate(date):
         
         newDay = '{:02d}'.format(_month) + '/' + '{:02d}'.format(_day)
         type(newDay)
-        print('4')
+
+        wheel(pos, Button.WHEEL_DOWN, 2)
+        wait(1)
 
         _day = _day + 1
         if _day > monthMaxDay.GetMonthMaxDay(_month):
@@ -203,7 +196,7 @@ def CreateEvernoteToDoList(beginDay, endDay):
 
 
 if __name__ == '__main__':
-    CreateEvernoteToDoList('2022.04.18', '2022.04.24')
+    CreateEvernoteToDoList('2022.06.06', '2022.07.03')
     
     #_beginDay = Date('2022.04.18')
     #ModifyDatesInNoteBeginDate(_beginDay)
