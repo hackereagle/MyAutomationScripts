@@ -133,7 +133,7 @@ class Date:
         self.mDay = temp.GetDay()
 
 
-originDay = [Pattern("1642946701374.png").similar(.80), Pattern("1642946760378.png").similar(.80), Pattern("1642946788844.png").similar(.80), Pattern("1642946800414.png").similar(.90), Pattern("1642946823444.png").similar(.80), Pattern("1642946837403.png").similar(.80), Pattern("1642946847284.png").similar(.80)]
+originDay = ["1677259772679.png", "1677259757163.png", "1677259744897.png", "1677259784296.png", "1677259797444.png", "1677259811930.png", "1677259825180.png"]
 def ModifyDatesInNoteBeginDate(date):
     print(date.ToString())
     _year = date.GetYear()
@@ -168,23 +168,23 @@ def CreateEvernoteToDoList(beginDay, endDay):
         _endDay = _beginDay.AddDay(6)
         
         while _beginDay.IsSmallerThanDay_str(endDay):
-            click(Pattern("1642860440444.png").similar(.46))
-            wait(2)
+            click("1677259405153.png")
+            wait(1)
         
-            click("1642861196260.png")
-            wait(4)
+            click("1677259455619.png")
+            wait(1)
         
-            click("1642861244399.png")
+            click("1677259559469.png")
             wait(1)
     
             type(_beginDay.ToString() + '~' + _endDay.ToString() + ' To Do List')
             wait(1)
         
-            click("1642861289557.png")
+            click("1677259573777.png")
             wait(1)
         
-            click("1642861410315.png")
-            wait(2)
+            click("1677259679230.png")
+            wait(1)
 
             ModifyDatesInNoteBeginDate(_beginDay)
 
@@ -196,7 +196,7 @@ def CreateEvernoteToDoList(beginDay, endDay):
 
 
 if __name__ == '__main__':
-    CreateEvernoteToDoList('2023.06.19', '2023.07.02')
+    CreateEvernoteToDoList('2023.04.10', '2023.04.16')
     
     #_beginDay = Date('2022.04.18')
     #ModifyDatesInNoteBeginDate(_beginDay)
@@ -206,7 +206,7 @@ if __name__ == '__main__':
     #wait(1)
 
     # 2022.01.24 Test find result
-    #x = find("1643037435053.png")
+    #x = find()
     #print(x)
     #Offset(31, 367)
     #print(x)
