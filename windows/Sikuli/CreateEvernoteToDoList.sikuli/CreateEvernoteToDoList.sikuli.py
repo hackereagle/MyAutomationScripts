@@ -196,7 +196,7 @@ def CreateEvernoteToDoList(beginDay, endDay):
 
 
 if __name__ == '__main__':
-    CreateEvernoteToDoList('2023.06.19', '2023.07.02')
+    CreateEvernoteToDoList('2023.07.03', '2023.10.01')
     
     #_beginDay = Date('2022.04.18')
     #ModifyDatesInNoteBeginDate(_beginDay)
