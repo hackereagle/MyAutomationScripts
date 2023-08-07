@@ -158,8 +158,9 @@ def ModifyDatesInNoteBeginDate(date):
 
         _day = _day + 1
         if _day > monthMaxDay.GetMonthMaxDay(_month):
+            _day = 1
             _month = _month + 1
-            _day = _day - monthMaxDay.GetMonthMaxDay(_month)
+            
 
 
 def CreateEvernoteToDoList(beginDay, endDay):
@@ -196,7 +197,7 @@ def CreateEvernoteToDoList(beginDay, endDay):
 
 
 if __name__ == '__main__':
-    CreateEvernoteToDoList('2023.04.10', '2023.04.16')
+    CreateEvernoteToDoList('2023.10.02', '2023.12.31')
     
     #_beginDay = Date('2022.04.18')
     #ModifyDatesInNoteBeginDate(_beginDay)

@@ -1,18 +1,10 @@
+import MonthMaxDayModule
 
 
-class MonthMaxDay:
-    def __init__(self, isLeapYear):
-        if isLeapYear == True:
-            self.mMonthMaxDay = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        else:
-            self.mMonthMaxDay = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-
-    def GetMonthMaxDay(self, month):
-        if month <= 12 and month > 0:
-            return self.mMonthMaxDay[month - 1]
 
 # global variable
-monthMaxDay = MonthMaxDay(False)
+#monthMaxDay = MonthMaxDay(False)
+monthMaxDay = MonthMaxDay(2023)
 
 def IsCorrectDayFormat(day):
     strs = day.split('.')
@@ -169,7 +161,7 @@ def CreateEvernoteToDoList(beginDay, endDay):
         _endDay = _beginDay.AddDay(6)
         
         while _beginDay.IsSmallerThanDay_str(endDay):
-            click(Pattern("1642860440444.png").similar(.46))
+            click(Pattern("1642860440444.png").similar(.43))
             wait(2)
         
             click("1642861196260.png")
@@ -197,7 +189,7 @@ def CreateEvernoteToDoList(beginDay, endDay):
 
 
 if __name__ == '__main__':
-    CreateEvernoteToDoList('2023.07.03', '2023.10.01')
+    #CreateEvernoteToDoList('2023.10.02', '2023.12.31')
     
     #_beginDay = Date('2022.04.18')
     #ModifyDatesInNoteBeginDate(_beginDay)
@@ -213,8 +205,10 @@ if __name__ == '__main__':
     #print(x)
     
     # testing MonthMaxDay
-    #test = MonthMaxDay(False)
-    #print(test.GetMonthMaxDay(2))
+    print('Test MonthMaxDay module')
+    testMonthMaxDay = TestMonthMaxDay()
+    testMonthMaxDay.TestLeepYearFebruary()
+    testMonthMaxDay.TestNotLeepYearFebruary()
 
     # testing IsCorrectDayFormat
     #print(IsCorrectDayFormat('2022.01.22'))
