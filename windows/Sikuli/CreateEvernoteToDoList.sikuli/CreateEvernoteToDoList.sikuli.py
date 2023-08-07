@@ -1,10 +1,8 @@
 import MonthMaxDayModule
 import DateModule
 
-
 # global variable
-#monthMaxDay = MonthMaxDay(False)
-monthMaxDay = MonthMaxDay(2023)
+#monthMaxDay = MonthMaxDay(2023)
 
 def IsCorrectDayFormat(day):
     strs = day.split('.')
@@ -23,6 +21,7 @@ def IsCorrectDayFormat(day):
     else:
         isMonthReasonable = False
 
+    monthMaxDay = MonthMaxDay(int(strs[0]))
     isDayReasonable = False
     maxDay = monthMaxDay.GetMonthMaxDay(month)
     day = int(strs[2])
@@ -34,15 +33,13 @@ def IsCorrectDayFormat(day):
     return isThreeEle and isMonthReasonable and isDayReasonable
 
 
-
-
-
 originDay = [Pattern("1642946701374.png").similar(.80), Pattern("1642946760378.png").similar(.80), Pattern("1642946788844.png").similar(.80), Pattern("1642946800414.png").similar(.90), Pattern("1642946823444.png").similar(.80), Pattern("1642946837403.png").similar(.80), Pattern("1642946847284.png").similar(.80)]
 def ModifyDatesInNoteBeginDate(date):
     print(date.ToString())
     _year = date.GetYear()
     _month = date.GetMonth()
     _day = date.mDay
+    monthMaxDay = MonthMaxDay(_year)
     for i in range(7):
         print(i)
         pos = find(originDay[i])
@@ -62,31 +59,42 @@ def ModifyDatesInNoteBeginDate(date):
 
         _day = _day + 1
         if _day > monthMaxDay.GetMonthMaxDay(_month):
-            #_day = _day - monthMaxDay.GetMonthMaxDay(_month)
             _day = 1
             _month = _month + 1
+            if _month > 12:
+                _year = _year + 1
+                monthMaxDay = MonthMaxDay(_year)
 
 
+language = 1
+# row = step, col = language
+evernoteGui = [[Pattern("1642860440444.png").similar(.43), "1691415791696.png"],
+                   ["1642861196260.png", "1691415995262.png"],
+                   ["1642861244399.png", "1691416115722.png"],
+                   ["1642861289557.png", "1691416235616.png"]]
 
 def CreateEvernoteToDoList(beginDay, endDay):
     if IsCorrectDayFormat(beginDay) and IsCorrectDayFormat(endDay):
         _beginDay = Date(beginDay)
         _endDay = _beginDay.AddDay(6)
-        
+
+        # TODO: if cross year, here will bug
+        #       Because current will bigger than end day, after crossed year
+        #       It maybe need a method to judge whether equal or bigger
         while _beginDay.IsSmallerThanDay_str(endDay):
-            click(Pattern("1642860440444.png").similar(.43))
+            click(evernoteGui[0][language])
             wait(2)
         
-            click("1642861196260.png")
+            click(evernoteGui[1][language])
             wait(4)
         
-            click("1642861244399.png")
+            click(evernoteGui[2][language])
             wait(1)
     
             type(_beginDay.ToString() + '~' + _endDay.ToString() + ' To Do List')
             wait(1)
         
-            click("1642861289557.png")
+            click(evernoteGui[3][language])
             wait(1)
         
             click("1642861410315.png")
@@ -102,7 +110,7 @@ def CreateEvernoteToDoList(beginDay, endDay):
 
 
 if __name__ == '__main__':
-    CreateEvernoteToDoList('2023.10.02', '2023.12.31')
+    CreateEvernoteToDoList('2023.10.09', '2023.12.31')
     
     #_beginDay = Date('2022.04.18')
     #ModifyDatesInNoteBeginDate(_beginDay)

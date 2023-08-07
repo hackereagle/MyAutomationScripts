@@ -136,3 +136,4 @@ class TestDate:
             print('FAIL')
 
     # TODO: test four method related check whether input date bigger or smaller current class
+    #       And need to check cross situation. 

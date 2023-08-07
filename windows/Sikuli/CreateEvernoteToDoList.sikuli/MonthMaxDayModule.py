@@ -7,7 +7,7 @@ class MonthMaxDay:
     #        self.mMonthMaxDay = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
     def __init__(self, year):
-        if year % 4 == 0:
+        if (year % 4) == 0:
             isLeapYear = True
         else:
             isLeapYear = False
