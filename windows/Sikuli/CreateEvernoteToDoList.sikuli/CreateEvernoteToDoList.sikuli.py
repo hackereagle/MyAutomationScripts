@@ -1,5 +1,5 @@
 import MonthMaxDayModule
-
+import DateModule
 
 
 # global variable
@@ -34,95 +34,7 @@ def IsCorrectDayFormat(day):
     return isThreeEle and isMonthReasonable and isDayReasonable
 
 
-class Date:
-    def __init__(self, date):
-        dateArray = date.split('.')
-        self.mYear = int(dateArray[0])
-        self.mMonth = int(dateArray[1])
-        self.mDay = int(dateArray[2])
-        #print(self.mYear)
-        #print(self.mMonth)
-        #print(self.mDay)
 
-    def GetYear(self):
-        return self.mYear
-
-    def GetMonth(self):
-        return self.mMonth
-
-    def GetDay(self):
-        self.mDay
-
-    def AddDay(self, day):
-        if day < 31:
-            #ret = Date(self.mYear, self.mMonth, self.mDay)
-            ret = Date(self.ToString())
-            ret.mDay = self.mDay + day
-            if ret.mDay > monthMaxDay.GetMonthMaxDay(self.mMonth):
-                ret.mMonth = self.mMonth + 1
-                ret.mDay = ret.mDay - monthMaxDay.GetMonthMaxDay(self.mMonth)
-            return ret
-        else:
-            print('Input day too large!')
-            return self
-
-    def ToString(self):
-        return str(self.mYear) + '.' + '{:02d}'.format(self.mMonth) + '.' + '{:02d}'.format(self.mDay)
-
-    def IsBiggerThanDay_str(self, day):
-        isBigger = False
-        dateArray = day.split('.')
-        _year = int(dateArray[0])
-        _month = int(dateArray[1])
-        _day = int(dateArray[2])
-        if self.mMonth > _month:
-            isBigger = True
-        else:
-            if self.mDay > _day:
-                isBigger = True
-        return isBigger
-
-    def IsBiggerThanDay_Date(self, day):
-        isBigger = False
-        if self.mMonth > day.GetMonth():
-            isBigger = True
-        else:
-            if self.mDay > day.GetDay():
-                isBigger = True
-        return isBigger
-
-    def IsSmallerThanDay_str(self, day):
-        isSmaller = False
-        dateArray = day.split('.')
-        _year = int(dateArray[0])
-        _month = int(dateArray[1])
-        _day = int(dateArray[2])
-        if self.mMonth < _month:
-            isSmaller = True
-        elif self.mMonth == _month:
-            if self.mDay < _day:
-                isSmaller = True
-        return isSmaller
-
-    def IsSmallerThanDay_Date(self, day):
-        isSmaller = False
-        if self.mMonth < day.GetMonth():
-            isSmaller = True
-        elif self.mMonth == day.GetMonth():
-            if self.mDay < day.GetDay():
-                isSmaller = True
-        return isSmaller
-
-    def AssignClass_Date(self, date):
-        self.mYear = date.GetYear()
-        self.mMonth = date.GetMonth()
-        self.mDay = date.GetDay()
-
-    def AssignClass_str(self, date):
-        temp = Date(date)
-        self.mYear = temp.GetYear()
-        self.mMonth = temp.GetMonth()
-        self.mDay = temp.GetDay()
 
 
 originDay = [Pattern("1642946701374.png").similar(.80), Pattern("1642946760378.png").similar(.80), Pattern("1642946788844.png").similar(.80), Pattern("1642946800414.png").similar(.90), Pattern("1642946823444.png").similar(.80), Pattern("1642946837403.png").similar(.80), Pattern("1642946847284.png").similar(.80)]
@@ -153,6 +65,7 @@ def ModifyDatesInNoteBeginDate(date):
             #_day = _day - monthMaxDay.GetMonthMaxDay(_month)
             _day = 1
             _month = _month + 1
+
 
 
 def CreateEvernoteToDoList(beginDay, endDay):
@@ -189,7 +102,7 @@ def CreateEvernoteToDoList(beginDay, endDay):
 
 
 if __name__ == '__main__':
-    #CreateEvernoteToDoList('2023.10.02', '2023.12.31')
+    CreateEvernoteToDoList('2023.10.02', '2023.12.31')
     
     #_beginDay = Date('2022.04.18')
     #ModifyDatesInNoteBeginDate(_beginDay)
@@ -205,18 +118,21 @@ if __name__ == '__main__':
     #print(x)
     
     # testing MonthMaxDay
-    print('Test MonthMaxDay module')
-    testMonthMaxDay = TestMonthMaxDay()
-    testMonthMaxDay.TestLeepYearFebruary()
-    testMonthMaxDay.TestNotLeepYearFebruary()
+    #print('Test MonthMaxDay module')
+    #testMonthMaxDay = TestMonthMaxDay()
+    #testMonthMaxDay.TestLeepYearFebruary()
+    #testMonthMaxDay.TestNotLeepYearFebruary()
 
     # testing IsCorrectDayFormat
     #print(IsCorrectDayFormat('2022.01.22'))
 
     # testing Date
-    #date = Date('2022.01.22')
-    #end = date.AddDay(10)
-    #print(date.ToString())
-    #print(end.ToString())
+    #print('Test Date module')
+    #testDate = TestDate()
+    #testDate.TestAddDay()
+    #testDate.TestAddDayAndCrossYear()
+    
+    
+    
 
 
