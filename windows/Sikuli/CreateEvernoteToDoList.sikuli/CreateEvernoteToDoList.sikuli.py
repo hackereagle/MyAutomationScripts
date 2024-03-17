@@ -1,5 +1,5 @@
-import MonthMaxDayModule
-import DateModule
+from MonthMaxDayModule import *
+from DateModule import *
 
 # global variable
 #monthMaxDay = MonthMaxDay(2023)
@@ -33,7 +33,7 @@ def IsCorrectDayFormat(day):
     return isThreeEle and isMonthReasonable and isDayReasonable
 
 
-originDay = [Pattern("1642946701374.png").similar(.80), Pattern("1642946760378.png").similar(.80), Pattern("1642946788844.png").similar(.80), Pattern("1642946800414.png").similar(.90), Pattern("1642946823444.png").similar(.80), Pattern("1642946837403.png").similar(.80), Pattern("1642946847284.png").similar(.80)]
+originDay = [Pattern("1710641326621.png").similar(.80), Pattern("1710641395688.png").similar(.85), Pattern("1710641432817.png").similar(.95), Pattern("1710641483222.png").similar(.80), Pattern("1710641517708.png").similar(.95), Pattern("1710641553350.png").similar(.85), Pattern("1710641584388.png").similar(.80)]
 def ModifyDatesInNoteBeginDate(date):
     print(date.ToString())
     _year = date.GetYear()
@@ -68,10 +68,12 @@ def ModifyDatesInNoteBeginDate(date):
 
 language = 1
 # row = step, col = language
-evernoteGui = [[Pattern("1642860440444.png").similar(.43), "1691415791696.png"],
-                   ["1642861196260.png", "1691415995262.png"],
+evernoteGui = [[Pattern("1642860440444.png").similar(.43), "1710640696272.png"],
+                   ["1642861196260.png", "1710640696272.png"],
                    ["1642861244399.png", "1691416115722.png"],
-                   ["1642861289557.png", "1691416235616.png"]]
+                   ["1642861289557.png", "1710640995438.png"]]
+
+todoListIcon = "1642861410315.png"
 
 def CreateEvernoteToDoList(beginDay, endDay):
     if IsCorrectDayFormat(beginDay) and IsCorrectDayFormat(endDay):
@@ -82,8 +84,9 @@ def CreateEvernoteToDoList(beginDay, endDay):
         #       Because current will bigger than end day, after crossed year
         #       It maybe need a method to judge whether equal or bigger
         while _beginDay.IsSmallerThanDay_str(endDay):
-            click(evernoteGui[0][language])
-            wait(2)
+            # 2024.03.17 newest evernote does not have this button. 
+            #click(evernoteGui[0][language])
+            #wait(2)
         
             click(evernoteGui[1][language])
             wait(4)
@@ -97,7 +100,7 @@ def CreateEvernoteToDoList(beginDay, endDay):
             click(evernoteGui[3][language])
             wait(1)
         
-            click("1642861410315.png")
+            click(todoListIcon)
             wait(2)
 
             ModifyDatesInNoteBeginDate(_beginDay)
@@ -110,7 +113,10 @@ def CreateEvernoteToDoList(beginDay, endDay):
 
 
 if __name__ == '__main__':
-    CreateEvernoteToDoList('2023.10.09', '2023.12.31')
+   # TODO: regonize screen dimension and do something or display warning message
+   #       1. https://stackoverflow.com/questions/55120579/sikuli-changing-screen-size
+   #       2. https://sikulix-2014.readthedocs.io/en/latest/screen.html
+    CreateEvernoteToDoList('2024.05.20', '2024.06.02')
     
     #_beginDay = Date('2022.04.18')
     #ModifyDatesInNoteBeginDate(_beginDay)
@@ -120,7 +126,7 @@ if __name__ == '__main__':
     #wait(1)
 
     # 2022.01.24 Test find result
-    #x = find("1643037435053.png")
+    #x = find()
     #print(x)
     #Offset(31, 367)
     #print(x)
@@ -132,10 +138,11 @@ if __name__ == '__main__':
     #testMonthMaxDay.TestNotLeepYearFebruary()
 
     # testing IsCorrectDayFormat
+    #print('\n\nTest IsCorrectDayFormat')
     #print(IsCorrectDayFormat('2022.01.22'))
 
     # testing Date
-    #print('Test Date module')
+    #print('\n\nTest Date module')
     #testDate = TestDate()
     #testDate.TestAddDay()
     #testDate.TestAddDayAndCrossYear()

@@ -1,4 +1,4 @@
-import MonthMaxDayModule
+from MonthMaxDayModule import MonthMaxDay
 
 class Date:
     def __init__(self, date):
