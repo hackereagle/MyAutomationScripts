@@ -53,6 +53,9 @@ def ModifyDatesInNoteBeginDate(date):
         
         newDay = '{:02d}'.format(_month) + '/' + '{:02d}'.format(_day)
         type(newDay)
+        wait(1)
+        type(Key.ESC)
+        wait(1)
 
         wheel(pos, Button.WHEEL_DOWN, 2)
         wait(1)
@@ -68,8 +71,8 @@ def ModifyDatesInNoteBeginDate(date):
 
 language = 1
 # row = step, col = language
-evernoteGui = [[Pattern("1642860440444.png").similar(.43), "1710640696272.png"],
-                   ["1642861196260.png", "1710640696272.png"],
+evernoteGui = [[Pattern("1642860440444.png").similar(.43), "1722781851996.png"],
+                   ["1642861196260.png", "1722781851996.png"],
                    ["1642861244399.png", "1691416115722.png"],
                    ["1642861289557.png", "1710640995438.png"]]
 
@@ -84,12 +87,12 @@ def CreateEvernoteToDoList(beginDay, endDay):
         #       Because current will bigger than end day, after crossed year
         #       It maybe need a method to judge whether equal or bigger
         while _beginDay.IsSmallerThanDay_str(endDay):
-            # 2024.03.17 newest evernote does not have this button. 
+            # 2024.03.17 newest evernote removed this button. 
             #click(evernoteGui[0][language])
             #wait(2)
         
             click(evernoteGui[1][language])
-            wait(4)
+            wait(10)
         
             click(evernoteGui[2][language])
             wait(1)
@@ -98,10 +101,10 @@ def CreateEvernoteToDoList(beginDay, endDay):
             wait(1)
         
             click(evernoteGui[3][language])
-            wait(1)
+            wait(3)
         
             click(todoListIcon)
-            wait(2)
+            wait(5)
 
             ModifyDatesInNoteBeginDate(_beginDay)
 
@@ -116,7 +119,7 @@ if __name__ == '__main__':
    # TODO: regonize screen dimension and do something or display warning message
    #       1. https://stackoverflow.com/questions/55120579/sikuli-changing-screen-size
    #       2. https://sikulix-2014.readthedocs.io/en/latest/screen.html
-    CreateEvernoteToDoList('2024.05.20', '2024.06.02')
+    CreateEvernoteToDoList('2024.09.23', '2024.09.29')
     
     #_beginDay = Date('2022.04.18')
     #ModifyDatesInNoteBeginDate(_beginDay)
