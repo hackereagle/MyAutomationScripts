@@ -33,7 +33,7 @@ def IsCorrectDayFormat(day):
     return isThreeEle and isMonthReasonable and isDayReasonable
 
 
-originDay = [Pattern("1710641326621.png").similar(.80), Pattern("1710641395688.png").similar(.85), Pattern("1710641432817.png").similar(.95), Pattern("1710641483222.png").similar(.80), Pattern("1710641517708.png").similar(.95), Pattern("1710641553350.png").similar(.85), Pattern("1710641584388.png").similar(.80)]
+originDay = [Pattern("1710641326621.png").similar(.80), Pattern("1710641395688.png").similar(.85), Pattern("1710641432817.png").similar(.95), Pattern("1710641483222.png").similar(.80), Pattern("1710641517708.png").similar(.95), Pattern("1710641553350.png").similar(.85), Pattern("1710641584388.png").similar(.69)]
 def ModifyDatesInNoteBeginDate(date):
     print(date.ToString())
     _year = date.GetYear()
@@ -65,6 +65,7 @@ def ModifyDatesInNoteBeginDate(date):
             _day = 1
             _month = _month + 1
             if _month > 12:
+                _month = 1
                 _year = _year + 1
                 monthMaxDay = MonthMaxDay(_year)
 
@@ -83,9 +84,6 @@ def CreateEvernoteToDoList(beginDay, endDay):
         _beginDay = Date(beginDay)
         _endDay = _beginDay.AddDay(6)
 
-        # TODO: if cross year, here will bug
-        #       Because current will bigger than end day, after crossed year
-        #       It maybe need a method to judge whether equal or bigger
         while _beginDay.IsSmallerThanDay_str(endDay):
             # 2024.03.17 newest evernote removed this button. 
             #click(evernoteGui[0][language])
@@ -119,7 +117,7 @@ if __name__ == '__main__':
    # TODO: regonize screen dimension and do something or display warning message
    #       1. https://stackoverflow.com/questions/55120579/sikuli-changing-screen-size
    #       2. https://sikulix-2014.readthedocs.io/en/latest/screen.html
-    CreateEvernoteToDoList('2024.09.23', '2024.09.29')
+    CreateEvernoteToDoList('2024.12.30', '2025.01.12')
     
     #_beginDay = Date('2022.04.18')
     #ModifyDatesInNoteBeginDate(_beginDay)
