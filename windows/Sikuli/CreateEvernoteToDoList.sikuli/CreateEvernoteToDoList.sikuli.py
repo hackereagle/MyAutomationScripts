@@ -33,7 +33,7 @@ def IsCorrectDayFormat(day):
     return isThreeEle and isMonthReasonable and isDayReasonable
 
 
-originDay = [Pattern("1710641326621.png").similar(.80), Pattern("1710641395688.png").similar(.85), Pattern("1710641432817.png").similar(.95), Pattern("1710641483222.png").similar(.80), Pattern("1710641517708.png").similar(.95), Pattern("1710641553350.png").similar(.85), Pattern("1710641584388.png").similar(.69)]
+originDay = [Pattern("1710641326621.png").similar(.80), Pattern("1710641395688.png").similar(.85), Pattern("1710641432817.png").similar(.85), Pattern("1710641483222.png").similar(.80), Pattern("1710641517708.png").similar(.85), Pattern("1710641553350.png").similar(.85), Pattern("1710641584388.png").similar(.69)]
 def ModifyDatesInNoteBeginDate(date):
     print(date.ToString())
     _year = date.GetYear()
@@ -42,6 +42,7 @@ def ModifyDatesInNoteBeginDate(date):
     monthMaxDay = MonthMaxDay(_year)
     for i in range(7):
         print(i)
+        wait(originDay[i], 10)
         pos = find(originDay[i])
         click(pos)
         
@@ -58,7 +59,6 @@ def ModifyDatesInNoteBeginDate(date):
         wait(1)
 
         wheel(pos, Button.WHEEL_DOWN, 2)
-        wait(1)
 
         _day = _day + 1
         if _day > monthMaxDay.GetMonthMaxDay(_month):
@@ -72,12 +72,15 @@ def ModifyDatesInNoteBeginDate(date):
 
 language = 1
 # row = step, col = language
-evernoteGui = [[Pattern("1642860440444.png").similar(.43), "1722781851996.png"],
-                   ["1642861196260.png", "1722781851996.png"],
+evernoteGui = [    ["1642861196260.png", "1722781851996.png"],
                    ["1642861244399.png", "1691416115722.png"],
-                   ["1642861289557.png", "1710640995438.png"]]
+                   ["1739710114493.png", "1739709947602.png"],
+                   ["1739710114493.png", "1739709986006.png"],
+                   ["1739710114493.png", "1739710034199.png"]]
 
-todoListIcon = "1642861410315.png"
+todoListIcon = evernoteGui[3][language]
+templateNoteImg = "templateNoteImg.png"
+noteTitleImg = evernoteGui[1][language]
 
 def CreateEvernoteToDoList(beginDay, endDay):
     if IsCorrectDayFormat(beginDay) and IsCorrectDayFormat(endDay):
@@ -85,24 +88,23 @@ def CreateEvernoteToDoList(beginDay, endDay):
         _endDay = _beginDay.AddDay(6)
 
         while _beginDay.IsSmallerThanDay_str(endDay):
-            # 2024.03.17 newest evernote removed this button. 
-            #click(evernoteGui[0][language])
-            #wait(2)
+            click(evernoteGui[0][language])
+            wait(noteTitleImg, 20)
         
             click(evernoteGui[1][language])
-            wait(10)
-        
-            click(evernoteGui[2][language])
             wait(1)
     
             type(_beginDay.ToString() + '~' + _endDay.ToString() + ' To Do List')
             wait(1)
         
-            click(evernoteGui[3][language])
+            click(evernoteGui[2][language])
             wait(3)
         
             click(todoListIcon)
-            wait(5)
+            wait(3)
+
+            click(evernoteGui[4][language])
+            wait(templateNoteImg, 30)
 
             ModifyDatesInNoteBeginDate(_beginDay)
 
@@ -117,7 +119,7 @@ if __name__ == '__main__':
    # TODO: regonize screen dimension and do something or display warning message
    #       1. https://stackoverflow.com/questions/55120579/sikuli-changing-screen-size
    #       2. https://sikulix-2014.readthedocs.io/en/latest/screen.html
-    CreateEvernoteToDoList('2024.12.30', '2025.01.12')
+    CreateEvernoteToDoList('2025.06.02', '2025.06.08')
     
     #_beginDay = Date('2022.04.18')
     #ModifyDatesInNoteBeginDate(_beginDay)
