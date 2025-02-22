@@ -59,6 +59,7 @@ def ModifyDatesInNoteBeginDate(date):
         wait(1)
 
         wheel(pos, Button.WHEEL_DOWN, 2)
+        wait(1)
 
         _day = _day + 1
         if _day > monthMaxDay.GetMonthMaxDay(_month):
@@ -119,7 +120,7 @@ if __name__ == '__main__':
    # TODO: regonize screen dimension and do something or display warning message
    #       1. https://stackoverflow.com/questions/55120579/sikuli-changing-screen-size
    #       2. https://sikulix-2014.readthedocs.io/en/latest/screen.html
-    CreateEvernoteToDoList('2025.06.02', '2025.06.08')
+    CreateEvernoteToDoList('2025.06.16', '2025.06.22')
     
     #_beginDay = Date('2022.04.18')
     #ModifyDatesInNoteBeginDate(_beginDay)
