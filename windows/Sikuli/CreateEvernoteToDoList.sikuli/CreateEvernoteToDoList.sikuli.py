@@ -70,6 +70,10 @@ def ModifyDatesInNoteBeginDate(date):
                 _year = _year + 1
                 monthMaxDay = MonthMaxDay(_year)
 
+def RemoveTag():
+    pos = find("1740288204533.png")
+    click(pos)
+    click("1740288243544.png")
 
 language = 1
 # row = step, col = language
@@ -112,6 +116,8 @@ def CreateEvernoteToDoList(beginDay, endDay):
             _beginDay = _beginDay.AddDay(7)
             print(_beginDay.ToString())
             _endDay = _beginDay.AddDay(6)
+
+            RemoveTag()
     else:
         print('Please check date format!')
 
@@ -120,7 +126,7 @@ if __name__ == '__main__':
    # TODO: regonize screen dimension and do something or display warning message
    #       1. https://stackoverflow.com/questions/55120579/sikuli-changing-screen-size
    #       2. https://sikulix-2014.readthedocs.io/en/latest/screen.html
-    CreateEvernoteToDoList('2025.06.16', '2025.06.22')
+    CreateEvernoteToDoList('2025.06.30', '2025.07.06')
     
     #_beginDay = Date('2022.04.18')
     #ModifyDatesInNoteBeginDate(_beginDay)
